@@ -15,6 +15,19 @@ namespace NewLib
         public Form1()
         {
             InitializeComponent();
+
+            var collection = GetAuthorsEF();
+            foreach (var item in collection)
+            {
+                listBox1.Items.Add(item.FirstName + " " + item.LastName);
+            }
+        }
+
+        private List<Author> GetAuthorsEF()
+        {
+            var context = new LibraryEntities();
+            var customers = context.Authors.ToList();
+            return customers;
         }
     }
 }
